@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/widget/widget_main_custom_body.dart';
+import 'package:portfolio/widget/widget_main_body.dart';
 import 'package:portfolio/widget/widget_main_drawer.dart';
 
 class ScreenMain extends StatelessWidget {

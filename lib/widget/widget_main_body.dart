@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class WidgetMainBody extends StatelessWidget {
@@ -13,26 +15,55 @@ class WidgetMainBody extends StatelessWidget {
     @required this.itemSpacing,
   }) : super(key: key);
 
+  // todo : custom GridView 생성
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: gridCount,
-          mainAxisSpacing: itemSpacing,
-          crossAxisSpacing: itemSpacing),
-      itemBuilder: (context, index) {
-        // return mainItem();
-        return Card(
-          child: Image.network(
-            tempImgUrl,
-            fit: BoxFit.contain,
+    Size size = MediaQuery.of(context).size;
+    List<Widget> dpList = [];
+    for (int i = 0; i < 100; i++) {
+      dpList
+          .add((Random().nextBool()) ? displayTest(i, size) : appTest(i, size));
+    }
+
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: List.generate(
+          gridCount,
+          (rowIndex) => Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: dpList
+                .where((item) => (dpList.indexOf(item) % gridCount) == rowIndex)
+                .toList(),
           ),
-          color: Colors.white,
-          elevation: 5,
-        );
-      },
+        ),
+      ),
     );
   }
+
+  Widget displayTest(int index, Size size) => Container(
+        margin: EdgeInsets.all(8.0),
+        width: size.width > 800 ? size.width / 100 * 16 : size.width / 40 * 16,
+        height: size.width > 800 ? size.width / 100 * 9 : size.width / 40 * 9,
+        color: Colors.red,
+        child: Center(
+          child: Text(index.toString()),
+        ),
+      );
+
+  Widget appTest(int index, Size size) => Container(
+        margin: EdgeInsets.all(8.0),
+        width: size.width > 800 ? size.width / 100 * 9 : size.width / 40 * 9,
+        height: size.width > 800 ? size.width / 100 * 16 : size.width / 40 * 16,
+        color: Colors.blue,
+        child: Center(
+          child: Text(index.toString()),
+        ),
+      );
 
   Widget mainItem() => Container(
         decoration: BoxDecoration(
