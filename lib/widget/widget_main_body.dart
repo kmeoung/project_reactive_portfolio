@@ -29,8 +29,7 @@ class WidgetMainBody extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     List<Widget> dpList = [];
     for (int i = 0; i < 100; i++) {
-      dpList
-          .add((Random().nextBool()) ? displayTest(i, size) : appTest(i, size));
+      dpList.add((Random().nextBool()) ? webItem(i, size) : appItem(i, size));
     }
 
     return SingleChildScrollView(
@@ -53,7 +52,8 @@ class WidgetMainBody extends StatelessWidget {
     );
   }
 
-  Widget displayTest(int index, Size size) => Container(
+  /// Web Item
+  Widget webItem(int index, Size size) => Container(
         margin: EdgeInsets.all(8.0),
         width: size.width > 800 ? size.width / 100 * 16 : size.width / 40 * 16,
         height: size.width > 800 ? size.width / 100 * 9 : size.width / 40 * 9,
@@ -63,7 +63,8 @@ class WidgetMainBody extends StatelessWidget {
         ),
       );
 
-  Widget appTest(int index, Size size) => Container(
+  /// App Item
+  Widget appItem(int index, Size size) => Container(
         margin: EdgeInsets.all(8.0),
         width: size.width > 800 ? size.width / 100 * 9 : size.width / 35 * 9,
         height: size.width > 800 ? size.width / 100 * 16 : size.width / 35 * 16,
