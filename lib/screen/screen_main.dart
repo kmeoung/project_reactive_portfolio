@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/widget/widget_main_body.dart';
 import 'package:portfolio/widget/widget_main_drawer.dart';
 
 class ScreenMain extends StatelessWidget {
@@ -29,7 +28,7 @@ class ScreenMain extends StatelessWidget {
       drawer: Drawer(
         child: drawerItem,
       ),
-      body: WidgetMainBody(
+      body: WidgetCustomGridView(
         gridCount: 2,
         itemSpacing: 10.0,
       ),
@@ -52,7 +51,7 @@ class ScreenMain extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: WidgetMainBody(
+            child: WidgetCustomGridView(
               gridCount: 4,
               itemSpacing: 10.0,
             ),
