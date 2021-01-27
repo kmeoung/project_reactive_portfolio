@@ -9,6 +9,14 @@ class WidgetMainBody extends StatelessWidget {
   final String tempImgUrl =
       'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.zUnZjlh1eETyF9w0AR5OKQHaDt%26pid%3DApi&f=1';
 
+  final List _webList = [
+    'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.wallpaperscraft.com%2Fimage%2Fmountains_lake_aerial_view_129710_1920x1080.jpg&f=1&nofb=1',
+  ];
+
+  final List _appList = [
+    'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwonderfulengineering.com%2Fwp-content%2Fuploads%2F2016%2F02%2Fmobile-wallpaper-55.jpg&f=1&nofb=1',
+  ];
+
   WidgetMainBody({
     Key key,
     @required this.gridCount,
@@ -49,19 +57,19 @@ class WidgetMainBody extends StatelessWidget {
         margin: EdgeInsets.all(8.0),
         width: size.width > 800 ? size.width / 100 * 16 : size.width / 40 * 16,
         height: size.width > 800 ? size.width / 100 * 9 : size.width / 40 * 9,
-        color: Colors.red,
-        child: Center(
-          child: Text(index.toString()),
+        child: Image.network(
+          _webList[Random().nextInt(_webList.length)],
+          fit: BoxFit.fill,
         ),
       );
 
   Widget appTest(int index, Size size) => Container(
         margin: EdgeInsets.all(8.0),
-        width: size.width > 800 ? size.width / 100 * 9 : size.width / 40 * 9,
-        height: size.width > 800 ? size.width / 100 * 16 : size.width / 40 * 16,
-        color: Colors.blue,
-        child: Center(
-          child: Text(index.toString()),
+        width: size.width > 800 ? size.width / 100 * 9 : size.width / 35 * 9,
+        height: size.width > 800 ? size.width / 100 * 16 : size.width / 35 * 16,
+        child: Image.network(
+          _appList[Random().nextInt(_appList.length)],
+          fit: BoxFit.fill,
         ),
       );
 
